@@ -23,17 +23,19 @@
     cursor: pointer;
     transition: all 0.1s linear;
 
-    &[data-focused],
     &:hover {
       background-color: $medium-grey;
       color: $pure-white;
     }
+  }
 
-    &[data-focused] {
-      outline: 2px solid white;
+  input[type='radio'] {
+    &:focus + label {
+      background-color: $medium-grey;
+      color: $pure-white;
     }
 
-    &[data-selected] {
+    &:checked + label {
       background-color: $orange;
       color: $pure-white;
     }

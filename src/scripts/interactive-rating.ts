@@ -45,58 +45,11 @@ class InteractiveRating {
     this.radioEls = [...radioEls];
     this.formEl = formEl;
 
-    // Bind events
-    this.radioEls.forEach((el) => {
-      el.addEventListener('change', this.handleRatingChange);
-      el.addEventListener('focus', this.handleFocus);
-      el.addEventListener('blur', this.handleBlur);
-    });
     this.formEl.addEventListener('submit', this.handleSubmit);
     this.root.addEventListener('animationend', (e) => {
       this.root.removeAttribute('data-invalid');
     });
   }
-
-  handleFocus = (e: Event) => {
-    const el = e.currentTarget;
-    if (!isInput(el)) {
-      throw new Error('Expected HTMLInputElement of type "radio"');
-    }
-
-    const label = el.parentElement;
-    if (!label || !(label instanceof HTMLLabelElement))
-      throw new Error('Radio input should have a parent label');
-
-    setAttribute([label], 'data-focused');
-  };
-
-  handleBlur = (e: Event) => {
-    const el = e.currentTarget;
-    if (!isInput(el)) {
-      throw new Error('Expected HTMLInputElement of type "radio"');
-    }
-
-    const label = el.parentElement;
-    if (!label || !(label instanceof HTMLLabelElement))
-      throw new Error('Radio input should have a parent label');
-
-    removeAttribute([label], 'data-focused');
-  };
-
-  handleRatingChange = (e: Event) => {
-    const { radioEls } = this;
-    for (const el of radioEls) {
-      const label = el.parentElement;
-      if (!label || !(label instanceof HTMLLabelElement))
-        throw new Error('Radio input should have a parent label');
-
-      if (el === e.currentTarget) {
-        setAttribute([label], 'data-selected');
-      } else {
-        removeAttribute([label], 'data-selected');
-      }
-    }
-  };
 
   handleSubmit = (e: Event) => {
     const { formEl } = this;
