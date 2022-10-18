@@ -1,0 +1,27 @@
+@use '../abstracts' as *;
+
+.button-primary {
+  border-radius: $s1;
+  padding: $s0;
+  text-transform: uppercase;
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $pure-white;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.1s linear;
+
+  &:hover,
+  &:focus {
+    background-color: $pure-white;
+    color: $orange;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

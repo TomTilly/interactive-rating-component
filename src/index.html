@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Rating Component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/index.css" />
+    <script type="module" src="scripts/index.js" defer></script>
+  </head>
+  <body>
+    <div class="center h-100">
+      <div class="interactive-rating | bg-gradient-black br-standard">
+        <div class="stack-vertical">
+          <div class="circle bg-dark-blue d-inline-block p0">
+            <img src="assets/icon-star.svg" />
+          </div>
+          <h2>How did we do?</h2>
+          <p>
+            Please let us know how we did with your support request. All
+            feedback is appreciated to help us improve our offering!
+          </p>
+          <form class="w-100">
+            <div class="stack-vertical">
+              <div class="interactive-rating__options-container | w-100">
+                <label
+                  class="interactive-rating__option | button-circle tabular-nums"
+                >
+                  <input class="sr-only" type="radio" name="rating" value="1" />
+                  1
+                </label>
+                <label
+                  class="interactive-rating__option | button-circle tabular-nums"
+                >
+                  <input class="sr-only" type="radio" name="rating" value="2" />
+                  2
+                </label>
+                <label
+                  class="interactive-rating__option | button-circle tabular-nums"
+                >
+                  <input class="sr-only" type="radio" name="rating" value="3" />
+                  3
+                </label>
+                <label
+                  class="interactive-rating__option | button-circle tabular-nums"
+                >
+                  <input class="sr-only" type="radio" name="rating" value="4" />
+                  4
+                </label>
+                <label
+                  class="interactive-rating__option | button-circle tabular-nums"
+                >
+                  <input class="sr-only" type="radio" name="rating" value="5" />
+                  5
+                </label>
+              </div>
+              <button class="button-primary | w-100" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

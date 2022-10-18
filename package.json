@@ -1,0 +1,43 @@
+{
+  "name": "interactive-rating-component",
+  "version": "0.1.0",
+  "description": "SASS compile|autoprefix|minimize and live-reload dev server using Browsersync for static HTML",
+  "main": "public/index.html",
+  "author": "5t3ph",
+  "scripts": {
+    "build:sass": "sass  --no-source-map src/styles:public/styles",
+    "build:ts": "tsc",
+    "copy:html": "copyfiles -u 1 ./src/*.html public",
+    "copy:assets": "copyfiles -u 1 ./src/assets/* public",
+    "copy": "npm-run-all --parallel copy:*",
+    "watch:html": "onchange 'src/*.html' -- npm run copy:html",
+    "watch:assets": "onchange 'src/assets/*' -- npm run copy:assets",
+    "watch:sass": "sass  --no-source-map --watch src/styles:public/styles",
+    "watch:ts": "tsc --watch",
+    "watch": "npm-run-all --parallel watch:*",
+    "serve": "browser-sync start --server public --files public",
+    "start": "npm-run-all copy --parallel watch serve",
+    "build": "npm-run-all copy:html build:*",
+    "postbuild": "postcss public/styles/*.css -u autoprefixer cssnano -r --no-map"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "autoprefixer": "^10.4.12",
+    "browser-sync": "^2.27.7",
+    "copyfiles": "^2.4.1",
+    "cssnano": "^5.0.17",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^9.1.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.49.8",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
+}

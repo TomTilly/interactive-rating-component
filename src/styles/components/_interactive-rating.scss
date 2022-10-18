@@ -1,0 +1,48 @@
+@use '../abstracts' as *;
+
+.interactive-rating {
+  max-inline-size: 40ch;
+  padding: $s2;
+
+  &__options-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: min(5vw, $s1);
+    align-items: stretch;
+  }
+
+  &__option {
+    padding: $s-3;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: $dark-blue;
+    color: $medium-grey;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    &[data-focused],
+    &:hover {
+      background-color: $medium-grey;
+      color: $pure-white;
+    }
+
+    &[data-focused] {
+      outline: 2px solid white;
+    }
+
+    &[data-selected] {
+      background-color: $orange;
+      color: $pure-white;
+    }
+  }
+
+  &[data-invalid] {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0, 0.23, 1, 0.71);
+    animation-name: headShake;
+    // transform-orgin: center bottom;
+  }
+}

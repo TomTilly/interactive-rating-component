@@ -1,0 +1,10 @@
+@use 'reset';
+@use 'utilities';
+@use 'global';
+@use 'animations';
+@use 'components/interactive-rating';
+@use 'components/button';
+
+body {
+  background: #131518;
+}

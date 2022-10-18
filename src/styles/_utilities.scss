@@ -1,0 +1,106 @@
+@use 'abstracts' as *;
+
+// Typography
+.lh-tight {
+  line-height: 1;
+}
+
+// Spacing
+.p-1 {
+  padding: $s-1;
+}
+
+.p0 {
+  padding: $s0;
+}
+
+// Colors
+.color-medium-grey {
+  color: $medium-grey;
+}
+
+.color-orange {
+  color: $orange;
+}
+
+// Backgrounds
+.bg-dark-blue {
+  background-color: $dark-blue;
+}
+
+.bg-gradient-black {
+  background: $gradient-black;
+}
+
+// Borders
+.br-standard {
+  border-radius: $s1;
+}
+
+.circle {
+  border-radius: 100%;
+}
+
+// Display
+.d-inline-block {
+  display: inline-block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Layout
+.stack-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: $s1;
+  align-items: flex-start;
+}
+
+.stack-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: $s0;
+  align-items: flex-start;
+}
+
+.center {
+  padding-inline: $s0;
+  display: grid;
+  place-items: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+// Sizing
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+// Misc.
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
