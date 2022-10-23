@@ -27,7 +27,7 @@ class InteractiveRating {
   private root: HTMLElement;
   private radioEls: HTMLInputElement[];
   private formEl: HTMLFormElement;
-  private _isValid = false;
+  private _isValid: boolean | undefined;
   private validationMsg = '';
 
   constructor(root: HTMLElement) {
@@ -59,6 +59,9 @@ class InteractiveRating {
     const maybeRating = formData.get('rating');
     console.log(maybeRating);
     if (maybeRating === null) {
+      this.showValidationError(
+        'Please select a rating before clicking "submit."'
+      ); // only show validation message the first time
       this.isValid = false;
       return;
     }
@@ -79,6 +82,41 @@ class InteractiveRating {
     `;
   };
 
+  // Used to notify screen readers of errors
+  showValidationError = (msg: string) => {
+    const { formEl, radioEls } = this;
+    // Clear previous validation error
+    const maybeValidationEl = formEl.querySelector(
+      '.interactive-rating__error'
+    );
+    if (maybeValidationEl) {
+      // Replace existing validation message with new message
+      const validationEl = maybeValidationEl;
+      validationEl.textContent = msg;
+      return;
+    } else {
+      // Show new validation error
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+      const validationEl = document.createElement('div');
+      const classes: string[] = ['interactive-rating__error', 'color-orange'];
+      if (!prefersReducedMotion) classes.push('sr-only');
+      validationEl.classList.add(...classes);
+      validationEl.textContent = msg;
+      validationEl.setAttribute('role', 'alert');
+      validationEl.id = 'error';
+
+      const stackEl = formEl.querySelector('.stack-vertical');
+      if (!stackEl) throw new Error('No ".stack-vertical" element found.');
+      stackEl.insertAdjacentElement('afterbegin', validationEl);
+
+      for (const radioEl of radioEls) {
+        radioEl.setAttribute('aria-invalid', 'error');
+      }
+    }
+  };
+
   get isValid() {
     return this._isValid;
   }
@@ -92,45 +130,5 @@ class InteractiveRating {
     this._isValid = value;
   }
 }
-
-// Type guards
-// isForm(maybeForm: any): maybeForm is HTMLFormElement {
-//   return maybeForm instanceof HTMLFormElement;
-// }
-
-// Event handlers
-// function handleSubmit(e: Event) {
-//   e.preventDefault();
-// if (!isForm(form)) return;
-
-// const formData = new FormData(form);
-// const maybeRating = formData.get('rating');
-// if (maybeRating === null) {
-// e.currentTarget.dataset.valid = 'false';
-// }
-// const rating = ratingOptions.find((validOption) => validOption === formData.get('rating'));
-
-// if(rating) {
-
-// } else {
-
-// }
-
-//   const thankYouTemplate = `
-//   <div class="stack-vertical align-center">
-//     <img class="interative-rating__thank-you-img" src="assets/illustration-thank-you.svg">
-//     <p>You selected ${rating} out of 5</p>
-//     <h2>Thank you!</h2>
-//     <p class="text-center">We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!</p>
-//   </div>
-// `;
-// }
-
-// Submit form
-// 1. Check if number was selected
-// 2. Replace HTML with thank you template
-
-// const sheepNames = ['Capn Frisky', 'Mr. Snugs', 'Lambchop'] as const;
-// type SheepName = typeof sheepNames[number];
 
 export default InteractiveRating;

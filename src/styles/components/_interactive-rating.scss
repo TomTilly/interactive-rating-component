@@ -44,7 +44,7 @@
   &[data-invalid] {
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0, 0.23, 1, 0.71);
-    animation-name: headShake;
+    animation-name: head-shake;
     // transform-orgin: center bottom;
   }
 }
