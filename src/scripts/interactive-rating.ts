@@ -89,31 +89,26 @@ class InteractiveRating {
     const maybeValidationEl = formEl.querySelector(
       '.interactive-rating__error'
     );
-    if (maybeValidationEl) {
-      // Replace existing validation message with new message
-      const validationEl = maybeValidationEl;
-      validationEl.textContent = msg;
-      return;
-    } else {
-      // Show new validation error
-      const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      ).matches;
-      const validationEl = document.createElement('div');
-      const classes: string[] = ['interactive-rating__error', 'color-orange'];
-      if (!prefersReducedMotion) classes.push('sr-only');
-      validationEl.classList.add(...classes);
-      validationEl.textContent = msg;
-      validationEl.setAttribute('role', 'alert');
-      validationEl.id = 'error';
+    if (maybeValidationEl) maybeValidationEl.remove();
 
-      const stackEl = formEl.querySelector('.stack-vertical');
-      if (!stackEl) throw new Error('No ".stack-vertical" element found.');
-      stackEl.insertAdjacentElement('afterbegin', validationEl);
+    // Show new validation error
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    const validationEl = document.createElement('div');
+    const classes: string[] = ['interactive-rating__error', 'color-orange'];
+    if (!prefersReducedMotion) classes.push('sr-only');
+    validationEl.classList.add(...classes);
+    validationEl.textContent = msg;
+    validationEl.setAttribute('role', 'alert');
+    validationEl.id = 'error';
 
-      for (const radioEl of radioEls) {
-        radioEl.setAttribute('aria-invalid', 'error');
-      }
+    const stackEl = formEl.querySelector('.stack-vertical');
+    if (!stackEl) throw new Error('No ".stack-vertical" element found.');
+    stackEl.insertAdjacentElement('afterbegin', validationEl);
+
+    for (const radioEl of radioEls) {
+      radioEl.setAttribute('aria-invalid', 'error');
     }
   };
 
