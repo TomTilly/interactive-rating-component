@@ -3,32 +3,33 @@ import { setAttribute, removeAttribute } from './utilities.js';
 /**
  * The Interactive Rating component expects the following HTML structure:
  * <div class="interactive-rating">
- *  <form>
- *    <label class="interactive-rating__option">
- *      <input type="radio" name="rating" value="1" />
- *        1
- *    </label>
- *    <!-- ...repeat <label> 4 more times for 2-5 values -->
- *    <button type="submit">
- *      Submit
- *    </button>
- *  </form>
+ *   <form>
+ *     <div class="stack-vertical">
+ *       <label class="interactive-rating__option">
+ *         <input type="radio" name="rating" value="1" />
+ *           1
+ *        </label>
+ *        <!-- repeat x times...
+ *     </div>
+ *     <button type="submit">
+ *       Submit
+ *     </button>
+ *   </form>
  * </div>
  */
 
-const ratingOptions = ['1', '2', '3', '4', '5'] as const;
-type Rating = typeof ratingOptions[number];
+// const ratingOptions = ['1', '2', '3', '4', '5'] as const;
+// type Rating = typeof ratingOptions[number];
 
-function isInput(maybeInput: any): maybeInput is HTMLInputElement {
-  return maybeInput instanceof HTMLInputElement && maybeInput?.type === 'radio';
-}
+// function isInput(maybeInput: any): maybeInput is HTMLInputElement {
+//   return maybeInput instanceof HTMLInputElement && maybeInput?.type === 'radio';
+// }
 
-class InteractiveRating {
+class Rating {
   private root: HTMLElement;
   private radioEls: HTMLInputElement[];
   private formEl: HTMLFormElement;
   private _isValid: boolean | undefined;
-  private validationMsg = '';
 
   constructor(root: HTMLElement) {
     const radioEls = root.querySelectorAll<HTMLInputElement>(
@@ -38,8 +39,6 @@ class InteractiveRating {
 
     // Basic validation to ensure HTML is somewhat well-formed
     if (!formEl) throw new Error('No form found');
-    if (radioEls.length !== 5)
-      throw new Error('There should be 5 radio elements');
 
     this.root = root;
     this.radioEls = [...radioEls];
@@ -52,27 +51,22 @@ class InteractiveRating {
   }
 
   handleSubmit = (e: Event) => {
-    const { formEl } = this;
     e.preventDefault();
 
+    const { formEl, root } = this;
     const formData = new FormData(formEl);
     const maybeRating = formData.get('rating');
-    console.log(maybeRating);
+
     if (maybeRating === null) {
-      this.showValidationError(
-        'Please select a rating before clicking "submit."'
-      ); // only show validation message the first time
+      this.showValidationError('Error: no rating was selected.');
       this.isValid = false;
       return;
     }
+    // Rating is set
+    const rating = maybeRating;
     this.isValid = true;
-    const rating = ratingOptions.find(
-      (validOption) => validOption === maybeRating
-    );
-    if (!rating)
-      throw new Error('Radio elements must have a value between 1 and 5');
 
-    this.root.innerHTML = `
+    root.innerHTML = `
       <div class="stack-vertical align-center">
         <img class="interative-rating__thank-you-img" src="assets/illustration-thank-you.svg" alt="">
         <p class="p-1 color-orange bg-dark-blue lh-tight br-standard">You selected ${rating} out of 5</p>
@@ -100,7 +94,6 @@ class InteractiveRating {
     if (!prefersReducedMotion) classes.push('sr-only');
     validationEl.classList.add(...classes);
     validationEl.textContent = msg;
-    validationEl.setAttribute('role', 'alert');
     validationEl.id = 'error';
 
     const stackEl = formEl.querySelector('.stack-vertical');
@@ -126,4 +119,4 @@ class InteractiveRating {
   }
 }
 
-export default InteractiveRating;
+export default Rating;
