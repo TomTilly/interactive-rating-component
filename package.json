@@ -36,8 +36,5 @@
     "prettier": "^2.7.1",
     "sass": "^1.49.8",
     "typescript": "^4.8.4"
-  },
-  "dependencies": {
-    "animate.css": "^4.1.1"
   }
 }
