@@ -1,7 +1,7 @@
 import Rating from './Rating.js';
 
-const interactiveRatingEl = document.querySelector('.interactive-rating');
+const ratingEl = document.querySelector('.rating');
 
-if (interactiveRatingEl instanceof HTMLElement) {
-  new Rating(interactiveRatingEl);
+if (ratingEl instanceof HTMLElement) {
+  new Rating(ratingEl);
 }

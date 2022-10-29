@@ -1,0 +1,7 @@
+@use '../abstracts/tokens' as *;
+
+.center-content {
+  padding-inline: $s0;
+  display: grid;
+  place-items: center;
+}

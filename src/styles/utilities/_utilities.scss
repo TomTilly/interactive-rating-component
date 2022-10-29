@@ -1,4 +1,4 @@
-@use 'abstracts' as *;
+@use '../abstracts/tokens' as *;
 
 // Typography
 .lh-tight {
@@ -28,6 +28,10 @@
   background-color: $dark-blue;
 }
 
+.bg-very-dark-blue {
+  background-color: $very-dark-blue;
+}
+
 .bg-gradient-black {
   background: $gradient-black;
 }
@@ -46,39 +50,7 @@
   display: inline-block;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 // Layout
-.stack-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: $s1;
-  align-items: flex-start;
-}
-
-.stack-horizontal {
-  display: flex;
-  flex-direction: row;
-  gap: $s0;
-  align-items: flex-start;
-}
-
-.center {
-  padding-inline: $s0;
-  display: grid;
-  place-items: center;
-}
-
 .justify-space-between {
   justify-content: space-between;
 }
@@ -103,4 +75,16 @@
 // Misc.
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

@@ -1,6 +1,6 @@
-@use '../abstracts' as *;
+@use '../abstracts/tokens' as *;
 
-.interactive-rating {
+.rating {
   max-inline-size: 40ch;
   padding: $s2;
 

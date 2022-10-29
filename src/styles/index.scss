@@ -1,10 +1,19 @@
-@use 'reset';
-@use 'utilities';
-@use 'global';
-@use 'animations';
-@use 'components/interactive-rating';
-@use 'components/button';
+// Abstracts
+@use 'abstracts/tokens';
+@use 'abstracts/animations';
 
-body {
-  background: #131518;
-}
+// Global
+@use 'global/reset';
+@use 'global/global';
+
+// Layout components
+@use 'layouts/center-content';
+@use 'layouts/stack-vertical';
+@use 'layouts/stack-horizontal';
+
+// Components
+@use 'components/button';
+@use 'components/rating';
+
+// Utilities
+@use 'utilities/utilities';

@@ -5,13 +5,23 @@
  *
  * ## HTML expected
  * ```html
- * <div class="interactive-rating">
+ * <div class="rating">
  *  <form>
  *    <div class="stack-vertical">
- *      <label class="interactive-rating__option">
- *        <input type="radio" name="rating" value="1" />
- *        1
- *      </label>
+ *      <input
+          class="sr-only"
+          id="1-of-5"
+          type="radio"
+          name="rating"
+          value="1"
+          aria-required="true"
+        />
+        <label
+          class="rating__option"
+          for="1-of-5"
+        >
+          1
+        </label>
  *      <!-- repeat x times... -->
  *    </div>
  *    <button type="submit">
@@ -63,7 +73,7 @@ class Rating {
     this.root.removeAttribute('data-invalid');
     root.innerHTML = `
       <div class="stack-vertical align-center">
-        <img class="interative-rating__thank-you-img" src="assets/illustration-thank-you.svg" alt="">
+        <img class="rating__thank-you-img" src="assets/illustration-thank-you.svg" alt="">
         <p class="p-1 color-orange bg-dark-blue lh-tight br-standard">You selected ${rating} out of 5</p>
         <h2>Thank you!</h2>
         <p class="text-center">We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!</p>
@@ -75,10 +85,10 @@ class Rating {
     const { formEl, radioEls, root } = this;
 
     // Clear previous validation error
-    formEl.querySelector('.interactive-rating__error')?.remove();
+    formEl.querySelector('.rating__error')?.remove();
 
     // Figure out which classes to use
-    const classes: string[] = ['interactive-rating__error', 'color-orange'];
+    const classes: string[] = ['rating__error', 'color-orange'];
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;

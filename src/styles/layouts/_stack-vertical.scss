@@ -1,0 +1,8 @@
+@use '../abstracts/tokens' as *;
+
+.stack-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: $s1;
+  align-items: flex-start;
+}
