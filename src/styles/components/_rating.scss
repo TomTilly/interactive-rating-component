@@ -20,7 +20,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $medium-grey;
+      background-color: $orange;
       color: $pure-white;
     }
   }
@@ -35,12 +35,12 @@
 
   input[type='radio'] {
     &:focus + label {
-      background-color: $medium-grey;
+      background-color: $orange;
       color: $pure-white;
     }
 
     &:checked + label {
-      background-color: $orange;
+      background-color: $medium-grey;
       color: $pure-white;
     }
   }
@@ -49,6 +49,5 @@
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0, 0.23, 1, 0.71);
     animation-name: head-shake;
-    // transform-orgin: center bottom;
   }
 }
