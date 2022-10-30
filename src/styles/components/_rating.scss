@@ -5,28 +5,32 @@
   padding: $s2;
 
   &__options-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: min(5vw, $s1);
-    align-items: stretch;
+    display: flex;
+    gap: min(3vw, $s0);
   }
 
   &__option {
-    padding: $s-3;
     aspect-ratio: 1;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
+    flex-grow: 1;
     background-color: $dark-blue;
     color: $medium-grey;
     font-weight: 700;
-    cursor: pointer;
     transition: all 0.1s linear;
+    cursor: pointer;
 
     &:hover {
       background-color: $medium-grey;
       color: $pure-white;
     }
+  }
+
+  &__label {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
   input[type='radio'] {
